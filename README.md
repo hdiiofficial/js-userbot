@@ -47,12 +47,12 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
 ### Tutorial Deploy di VPS
 
--  `git clone https://github.com/mrismanaziz/Man-Userbot`
+-  `git clone https://github.com/hdiiofficial/Js-Userbot`
 -  `cd Man-Userbot`
 -  `pip3 install -r requirements.txt`
 -  `mv sample_config.env config.env`
 -  edit config.env Anda dan isi VARS menggunakan `nano config.env` `CTRL + S ` untuk menyimpan VARS Anda, gunakan `CTRL + X` untuk keluar dan kembali ke direktori Man-Userbot
--  Buka SCRREN di VPS Anda `screen -S Man-Userbot`
+-  Buka SCRREN di VPS Anda `screen -S Js-Userbot`
 -  Kemudian gunakan perintah ini untuk menyebarkan Man-Userbot `python3 -m userbot`
 
 </details>
@@ -63,7 +63,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
 ## Updates & Support
 
-Follow Channel [@JowoStore](https://t.me/Jowo_store) untuk info Update bot dan Gabung Group [@SharingUserbot](https://t.me/SharingUserbot) untuk untuk diskusi, pelaporan bug, dan bantuan tentang Js-Userbot.
+Follow Channel [@JowoStore](https://t.me/Jowo_store) untuk info Update bot dan Gabung Group [@Sharing Js-Userbot](https://t.me/official_Js_Userbot) untuk untuk diskusi, pelaporan bug, dan bantuan tentang Js-Userbot.
 
 #### Special Thanks To [Everyone](https://github.com/mrismanaziz/Man-Userbot/graphs/contributors) Who Has Helped Make This Userbot Awesome!
 -  [AdekMaulana](https://github.com/adekmaulana) : ProjectBish
