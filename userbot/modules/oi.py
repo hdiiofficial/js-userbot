@@ -70,6 +70,15 @@ async def _(event):
     await event.delete()
 
 
+@bot.on(man_cmd(outgoing=True, pattern=r"js(?: |$)(.*)"))
+async def _(event):
+    await event.client.send_message(
+        event.chat_id, "**The Js-Userbot,Jasa Pemasangan Userbot Terpercaya & Diveritifikasi Oleh Kami!!\nJoin @Jowo_Store**"
+    )
+    await event.delete()
+
+
+
 @bot.on(man_cmd(outgoing=True, pattern=r"dp(?: |$)(.*)"))
 async def _(event):
     await event.client.send_message(
