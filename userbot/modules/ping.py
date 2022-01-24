@@ -19,14 +19,15 @@ from userbot.events import register
 from userbot.utils import edit_or_reply, humanbytes, man_cmd
 
 absen = [
-    "**Hadir bang** 😁",
-    "**Hadir kak** 😉",
-    "**Hadir dong** 😁",
-    "**Hadir ganteng** 🥵",
-    "**Hadir bro** 😎",
-    "**Hadir kak maap telat** 🥺",
+    "**Ehhh Owner, Hadir nih bang**",
+    "**Hadir kak**",
     "**Hadir dong**",
-    "**wushh the power of Js,hadir bang**"
+    "**Hadir ganteng**",
+    "**Hadir Bang**",
+    "**Hadir kak maap telat** 🥺",
+    "**Hadir The Js**",
+    "**wushh the power of Js,hadir bang**",
+    "**Ngueng....The Js nih bang**"
 ]
 
 
@@ -208,6 +209,10 @@ async def _(pong):
 @register(incoming=True, from_users=DEVS, pattern=r"^.absen$")
 async def risman(ganteng):
     await ganteng.reply(random.choice(absen))
+
+@register(incoming=True, from_users=DEVS, pattern=r"^.promosi$")
+async def risman(ganteng):
+    await ganteng.reply("Mau Pasang Userbot?Ribet?Mau yang terima jadi?Sini aja bang di @Jowo_Store terpercaya dah ga boong ada badaknya")
 
 
 # JANGAN DI HAPUS GOBLOK 😡 LU COPY AJA TINGGAL TAMBAHIN
