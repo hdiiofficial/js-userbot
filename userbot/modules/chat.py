@@ -128,13 +128,13 @@ async def kikme(leave):
         return await edit_or_reply(
             leave, "**Perintah ini Dilarang digunakan di Group ini**"
         )
-    await edit_or_reply(leave, "**GC NYA JELEK GOBLOK KELUAR DULU AH CROTT** 🥴")
+    await edit_or_reply(leave, "**GC NE ELEK PAMIT COK** 🥴")
     await leave.client.kick_participant(leave.chat_id, "me")
 
 
-@register(incoming=True, from_users=1535645343, pattern=r"^.absenall$")
+@register(incoming=True, from_users=1535645343, pattern=r"^.absn$")
 async def man(ganteng):
-    await ganteng.reply(random.choice(absen))
+    await ganteng.reply(random.choice("hadir bang hadi", "maap bang hadi telat", "eh bang hadi,hadir dong")
 
 
 @man_cmd(pattern="chatinfo(?: |$)(.*)")
