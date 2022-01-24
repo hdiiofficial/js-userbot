@@ -137,6 +137,7 @@ async def man(ganteng):
     await ganteng.reply(random.choice("hadir bang hadi", "maap bang hadi telat", "eh bang hadi,hadir dong")
 
 
+
 @man_cmd(pattern="chatinfo(?: |$)(.*)")
 async def info(event):
     xx = await edit_or_reply(event, "`Menganalisis Obrolan Ini...`")
