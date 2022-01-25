@@ -9,3 +9,15 @@ async def _(event):
     xx = await edit_or_reply(event, f"**Jasa Pasang Ubot?Filesharing?Musik?tpi lu gamau ribet,Ini dia solusinya**")
     sleep(5)
     await xx.edit("**@Jowo_Store Jasa Pasang Ubot dll terpercaya klo ga percaya tanya aja sama pak haji**")
+
+
+CMD_HELP.update(
+    {
+        "marketing": f"**Plugin : **`marketing`\
+        \n\n  •  **Syntax :** `{cmd}jasa`\
+        \n  •  **Function : **liat sendiri**\
+    "
+    }
+
+)
+
