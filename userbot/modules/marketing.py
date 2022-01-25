@@ -18,6 +18,5 @@ CMD_HELP.update(
         \n  •  **Function : **liat sendiri**\
     "
     }
-
 )
 
