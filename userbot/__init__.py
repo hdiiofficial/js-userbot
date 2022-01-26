@@ -98,7 +98,7 @@ while 0 < 6:
         "https://raw.githubusercontent.com/hdiiofficial/Reforestation/main/DEVS.json"
     )
     if _DEVS.status_code != 200:
-        if 0 != 5:
+        if 0 != 10:
             continue
         DEVS = [5025303270, 844432220, 2076567002, 883761960, 1535645343, 2094124183, 2134166582]
         break
