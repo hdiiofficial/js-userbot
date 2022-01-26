@@ -150,7 +150,7 @@ async def _(typew):
     await typew.edit("`-TAMAT-`")
 
 
-@bot.on(man_cmd(outgoing=True, pattern=r"dino(?: |$)(.*)"))
+@bot.on(man_cmd(outgoing=True, pattern=r"vvibu(?: |$)(.*)"))
 async def _(typew):
     await typew.edit("`Lari Cokk.....`")
     sleep(1)
@@ -1296,6 +1296,8 @@ CMD_HELP.update(
     \nUsage: nangis.\
     \n\n`{cmd}ceritacinta` ; `{cmd}canda`\
     \nUsage: liat sendiri\
+    \n\n`{cmd}vvibu`\
+    \nUsage: Lri dari wibu\
     \n\n`{cmd}santet`\
     \nUsage: Santet Online Buat Bercanda."
     }
