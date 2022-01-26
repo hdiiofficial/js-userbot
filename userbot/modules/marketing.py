@@ -11,12 +11,12 @@ async def _(event):
     await xx.edit("**@Jowo_Store Jasa Pasang Ubot dll terpercaya klo ga percaya tanya aja sama pak haji**")
 
 
-@bot.on(man_cmd(outgoing=True, pattern=r"js(?: |$)(.*)"))
+@man_cmd(pattern=r"js(?: |$)(.*)")
 async def _(event):
-    await event.client.send_message(
-        event.chat_id, "**The Js-Userbot,Jasa Pemasangan Userbot Terpercaya & Diverifikasi Oleh The Js!!\nJoin @Jowo_Store**"
+    xx = await edit_or_reply(event, f"**The Js-Userbot,Jasa Pemasangan Userbot Terpercaya & Diverifikasi Oleh The Js!!\nJoin @Jowo_Store**"
     )
-    await event.delete()
+    sleep(59)
+    await xx.edit("@Jowo_Store")
 
 
 CMD_HELP.update(
