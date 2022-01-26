@@ -59,10 +59,6 @@ async def man_userbot_on():
     except Exception as e:
         LOGS.info(str(e))
     try:
-        await bot(JoinChannelRequest("@Official_Js_Store"))
-    except BaseException:
-        pass
-    try:
         await bot(JoinChannelRequest("@Jowo_Store"))
     except BaseException:
         pass
