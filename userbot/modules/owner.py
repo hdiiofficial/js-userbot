@@ -16,6 +16,7 @@ from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
 
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
+@register(incoming=True, from_users=DEVS, pattern=r"^\.absen(?: |$)(.*)")
 @register(incoming=True, from_user=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
 async def cgban(event):
     if event.fwd_from:
