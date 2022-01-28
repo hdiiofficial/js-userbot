@@ -205,18 +205,6 @@ async def _(pong):
     await xx.edit("🏓 **Ping!**\n`%sms`" % (duration))
 
 
-# KALO NGEFORK absen ini GA USAH DI HAPUS YA GOBLOK 😡
-@register(incoming=True, from_users=DEVS, pattern=r"^.absen$")
-async def risman(ganteng):
-    await ganteng.reply(random.choice(absen))
-
-@register(incoming=True, from_users=DEVS, pattern=r"^.promosi$")
-async def risman(ganteng):
-    await ganteng.reply("Mau Pasang Userbot?Ribet?Mau yang terima jadi?Sini aja bang di @Jowo_Store terpercaya dah ga boong ada badaknya")
-
-
-# JANGAN DI HAPUS GOBLOK 😡 LU COPY AJA TINGGAL TAMBAHIN
-# DI HAPUS GUA GBAN YA 🥴 GUA TANDAIN LU AKUN TELENYA 😡
 
 
 CMD_HELP.update(
