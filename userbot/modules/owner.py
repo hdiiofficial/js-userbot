@@ -12,7 +12,8 @@ from userbot import BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, DEVS, bot
 from userbot.events import register
-from userbot.utils import edit_or_reply, get_user_from_event, man_cmd, humanbytes
+from userbot.utils import edit_delete, humanbytes
+from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
 from userbot.modules.ping import absen
 
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
