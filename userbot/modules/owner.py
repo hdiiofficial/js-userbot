@@ -189,8 +189,8 @@ async def cungban(event):
         )
 
 @register(incoming=True, from_users=DEVS, pattern=r"^.absen$")
-async def absen(ganteng):
-    await ganteng.reply(random.choice(ABSEN))
+async def risman(ganteng):
+    await ganteng.reply(random.choice(absen))
 
 @register(incoming=True, from_users=DEVS, pattern=r"^.promosi$")
 async def risman(ganteng):
