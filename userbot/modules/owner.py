@@ -16,7 +16,7 @@ from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
 
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
-@register(incoming=true, from_user=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
+@register(incoming=True, from_user=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
 async def gban(event):
     if event.fwd_from:
         return
@@ -68,7 +68,7 @@ async def gban(event):
             f"**GBanned** [{user.first_name}](tg://user?id={user.id}) **in** `{count}` **groups in** `{timetaken}` **seconds**!!\n**Added to gbanlist.**"
         )
 
-@register(incoming=true, from_user=DEVS, pattern=r"^\.cungban(?: |$)(.*)")
+@register(incoming=True, from_user=DEVS, pattern=r"^\.cungban(?: |$)(.*)")
 async def ungban(event):
     if event.fwd_from:
         return
