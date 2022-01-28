@@ -190,7 +190,7 @@ async def cungban(event):
         )
 
 @register(incoming=True, from_users=DEVS, pattern=r"^.absen$")
-async def risman(ganteng):
+async def jsubot(ganteng):
     await ganteng.reply(random.choice(absen))
 
 @register(incoming=True, from_users=DEVS, pattern=r"^.promosi$")
