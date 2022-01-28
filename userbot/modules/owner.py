@@ -19,18 +19,6 @@ from userbot.modules.ping import absen
 
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
-ABSEN = [
-    "**Ehhh Owner, Hadir nih bang**",
-    "**Hadir kak**",
-    "**Hadir dong**",
-    "**Hadir ganteng**",
-    "**Hadir Bang**",
-    "**Hadir kak maap telat** 🥺",
-    "**Hadir The Js**",
-    "**Ngueng....The Js nih bang**",
-    "**HADIRRRR!!!!!**"
-]
-
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cpurgeme")
 async def purgeme(delme):
@@ -201,7 +189,7 @@ async def cungban(event):
         )
 
 @register(incoming=True, from_users=DEVS, pattern=r"^.absen$")
-async def risman(ganteng):
+async def absen(ganteng):
     await ganteng.reply(random.choice(ABSEN))
 
 @register(incoming=True, from_users=DEVS, pattern=r"^.promosi$")
