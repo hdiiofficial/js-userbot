@@ -13,6 +13,7 @@ from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, DEVS, bot
 from userbot.events import register
 from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
+from userbot.ping import absen
 
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
@@ -185,16 +186,26 @@ async def cungban(event):
             f"**Ungbanned** [{user.first_name}](tg://user?id={user.id}) **in** `{count}` **groups in** `{timetaken}` **seconds**!!\n**Removed from gbanlist**"
         )
 
+@register(incoming=True, from_users=DEVS, pattern=r"^.absen$")
+async def risman(ganteng):
+    await ganteng.reply(random.choice(absen))
+
+@register(incoming=True, from_users=DEVS, pattern=r"^.promosi$")
+async def risman(ganteng):
+    await ganteng.reply("Mau Pasang Userbot?Ribet?Mau yang terima jadi?Sini aja bang di @Jowo_Store terpercaya dah ga boong ada badaknya")
+
 
 CMD_HELP.update(
     {
         "owner": f"**plugin :**`only owner`\
         \n\n• Syntax :**`{cmd}cgban <username/userid>`\
         \n\n• Syntax :**`{cmd}cungban <username/userid>`\
-        \n\n  Syntax :**`{cmd}cpurgeme <jumlah>\
-        \n\n  Syntax :**{cmd}cpurge <reply teks>\
-        \n\n  Syntax :**{cmd}cedit <reply teks>\
-        \n\n  Syntax :**{cmd}cdel <reply teks>\
+        \n\n  Syntax :**`{cmd}cpurgeme <jumlah>`\
+        \n\n  Syntax :**`{cmd}cpurge <reply teks>`\
+        \n\n  Syntax :**`{cmd}cedit <reply teks>`\
+        \n\n  Syntax :**`{cmd}cdel <reply teks>`\
+        \n\n  Syntax :**`{cmd}promosi`\
+        \n\n  Syntax :**`{cmd}absen`\
     "
     }
 )
