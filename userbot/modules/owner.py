@@ -17,7 +17,7 @@ from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
 @register(incoming=True, from_user=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
-async def gban(event):
+async def cgban(event):
     if event.fwd_from:
         return
     gbun = await edit_or_reply(event, "`MengGbanned...`")
@@ -69,7 +69,7 @@ async def gban(event):
         )
 
 @register(incoming=True, from_user=DEVS, pattern=r"^\.cungban(?: |$)(.*)")
-async def ungban(event):
+async def cungban(event):
     if event.fwd_from:
         return
     ungbun = await edit_or_reply(event, "`UnGbanning...`")
