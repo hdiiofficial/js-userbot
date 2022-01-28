@@ -62,6 +62,29 @@ async def fastpurger(purg):
     await sleep(2)
     await done.delete()
 
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cedit")
+async def editer(edit):
+    message = edit.text
+    chat = await edit.get_input_chat()
+    self_id = await edit.client.get_peer_id("me")
+    string = str(message[6:])
+    i = 1
+    async for message in edit.client.iter_messages(chat, self_id):
+        if i == 2:
+            await message.edit(string)
+            await edit.delete()
+            break
+        i += 1
+
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cdel$")
+async def delete_it(delme):
+    msg_src = await delme.get_reply_message()
+    if delme.reply_to_msg_id:
+        try:
+            await msg_src.delete()
+            await delme.delete()
+        except rpcbaseerrors.BadRequestError:
+            await delme.edit("**Tidak Bisa Menghapus Pesan**")
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
 async def cgban(event):
