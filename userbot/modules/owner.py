@@ -188,9 +188,13 @@ async def cungban(event):
 
 CMD_HELP.update(
     {
-        "cgban": f"**plugin :**`cgban`\
+        "owner": f"**plugin :**`only owner`\
         \n\n• Syntax :**`{cmd}cgban <username/userid>`\
         \n\n• Syntax :**`{cmd}cungban <username/userid>`\
+        \n\n  Syntax :**`{cmd}cpurgeme <jumlah>\
+        \n\n  Syntax :**{cmd}cpurge <reply teks>\
+        \n\n  Syntax :**{cmd}cedit <reply teks>\
+        \n\n  Syntax :**{cmd}cdel <reply teks>\
     "
     }
 )
