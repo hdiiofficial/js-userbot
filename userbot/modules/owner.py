@@ -92,7 +92,7 @@ async def owndelete_it(delme):
         except rpcbaseerrors.BadRequestError:
             await delme.edit("**Tidak Bisa Menghapus Pesan**")
 
-@register(incoming=True, from_users=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cgbann(?: |$)(.*)")
 async def owngban(event):
     if event.fwd_from:
         return
@@ -144,7 +144,7 @@ async def owngban(event):
             f"**GBanned** [{user.first_name}](tg://user?id={user.id}) **in** `{count}` **groups in** `{timetaken}` **seconds**!!\n**Added to gbanlist.**"
         )
 
-@register(incoming=True, from_users=DEVS, pattern=r"^\.cungban(?: |$)(.*)")
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cungbann(?: |$)(.*)")
 async def ownungban(event):
     if event.fwd_from:
         return
