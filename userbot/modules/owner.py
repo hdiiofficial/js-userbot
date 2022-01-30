@@ -12,11 +12,13 @@ from telethon.tl.types import Channel
 import userbot.modules.sql_helper.gban_sql as gban_sql
 from userbot import BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, DEVS, bot
+from userbot import CMD_HELP, DEVS, bot, owner
 from userbot.events import register
 from userbot.utils import edit_delete, humanbytes
 from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
 from userbot.modules.ping import absen
+from telethon.events import ChatAction
+
 
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
