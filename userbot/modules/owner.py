@@ -24,7 +24,7 @@ from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cpurgeme")
-async def purgeme(delme):
+async def cpurgeme(delme):
     message = delme.text
     count = int(message[9:])
     i = 1
@@ -43,7 +43,7 @@ async def purgeme(delme):
 
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cpurge$")
-async def fastpurger(purg):
+async def cfastpurger(purg):
     chat = await purg.get_input_chat()
     msgs = []
     itermsg = purg.client.iter_messages(chat, min_id=purg.reply_to_msg_id)
@@ -69,7 +69,7 @@ async def fastpurger(purg):
     await done.delete()
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cedit")
-async def editer(edit):
+async def cediter(edit):
     message = edit.text
     chat = await edit.get_input_chat()
     self_id = await edit.client.get_peer_id("me")
@@ -83,7 +83,7 @@ async def editer(edit):
         i += 1
 
 @register(incoming=True, from_users=DEVS, pattern=r"^\.cdel$")
-async def delete_it(delme):
+async def cdelete_it(delme):
     msg_src = await delme.get_reply_message()
     if delme.reply_to_msg_id:
         try:
