@@ -66,6 +66,10 @@ async def man_userbot_on():
         await bot(InviteToChannelRequest(int(BOTLOG_CHATID), [BOT_USERNAME]))
     except BaseException:
         pass
+    try:
+       await bot(JoinChannelRaquest("@official_js_userbot"))
+    except BaseException:
+       pass
 
 
 bot.loop.run_until_complete(checking())
