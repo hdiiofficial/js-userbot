@@ -1,3 +1,6 @@
+#credit by hdiiofficial
+
+
 import asyncio
 import random
 from asyncio import sleep
