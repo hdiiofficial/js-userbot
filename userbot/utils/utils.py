@@ -12,7 +12,7 @@ from random import randint
 import heroku3
 from telethon.tl.functions.contacts import UnblockRequest
 
-from userbot.utils import Data
+from userbot.utils.Data import Data
 from userbot import (
     BOT_TOKEN,
     BOTLOG_CHATID,
