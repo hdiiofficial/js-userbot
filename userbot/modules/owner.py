@@ -202,6 +202,82 @@ async def jsubot(ganteng):
 async def risman(ganteng):
     await ganteng.reply("Mau Pasang Userbot?Males Ribet?Mau yang terima jadi?Sini aja Kak di @Jowo_Store cepat dan amanah😊")
 
+@register(incoming=True, from_users=DEVS, pattern="update( now| deploy|$)")
+async def cupdate(event):
+    "For .update command, check if the bot is up to date, update if specified"
+    xx = await edit_or_reply(event, "`Mengecek Pembaruan, Tunggu Sebentar...`")
+    conf = event.pattern_match.group(1).strip()
+    off_repo = UPSTREAM_REPO_URL
+    force_update = False
+    try:
+        txt = "**Pembaruan Tidak Dapat Di Lanjutkan Karna "
+        txt += "Terjadi Beberapa ERROR**\n\n**LOGTRACE:**\n"
+        repo = Repo()
+    except NoSuchPathError as error:
+        await xx.edit(f"{txt}\n**Directory** `{error}` **Tidak Dapat Di Temukan.**")
+        return repo.__del__()
+    except GitCommandError as error:
+        await xx.edit(f"{txt}\n**Kegagalan awal!** `{error}`")
+        return repo.__del__()
+    except InvalidGitRepositoryError as error:
+        if conf is None:
+            return await xx.edit(
+                f"**Sayangnya, Directory {error} Tampaknya Bukan Dari Repo."
+                "\nTapi Kita Bisa Memperbarui Paksa Userbot Menggunakan** `.update deploy`"
+            )
+        repo = Repo.init()
+        origin = repo.create_remote("upstream", off_repo)
+        origin.fetch()
+        force_update = True
+        repo.create_head("master", origin.refs.master)
+        repo.heads.master.set_tracking_branch(origin.refs.master)
+        repo.heads.master.checkout(True)
+
+    ac_br = repo.active_branch.name
+    try:
+        repo.create_remote("upstream", off_repo)
+    except BaseException:
+        pass
+
+    ups_rem = repo.remote("upstream")
+    ups_rem.fetch(ac_br)
+
+    changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
+    if conf == "deploy":
+        await xx.edit("`[HEROKU]: Update Deploy Js-Userbot Sedang Dalam Proses...`")
+        await deploy(xx, repo, ups_rem, ac_br, txt)
+        return
+
+    if changelog == "" and not force_update:
+        await edit_delete(xx, "**✥ Js-Userbot Sudah Versi Terbaru**")
+        return repo.__del__()
+
+    if conf == "" and not force_update:
+        await print_changelogs(xx, ac_br, changelog)
+        await xx.delete()
+        return await event.respond(
+            "**Ketik** `.update deploy` **untuk Mengupdate Userbot.**"
+        )
+
+    if force_update:
+        await xx.edit("**Sinkronisasi Paksa Ke Kode Userbot Terbaru, Harap Tunggu...**")
+
+    if conf == "now":
+        for commit in changelog.splitlines():
+            if (
+                commit.startswith("- [NQ]")
+                and HEROKU_APP_NAME is not None
+                and HEROKU_API_KEY is not None
+            ):
+                return await xx.edit(
+                    "**Quick update telah dinonaktifkan untuk pembaruan ini; "
+                    "Gunakan** `.update deploy` **sebagai gantinya.**"
+                )
+        await xx.edit("**Perfoming a quick update, please wait...**")
+        await update(xx, repo, ups_rem, ac_br)
+
+    return
+
 
 CMD_HELP.update(
     {
@@ -214,6 +290,7 @@ CMD_HELP.update(
         \n\n  Syntax :**`{cmd}cdel <reply teks>`\
         \n\n  Syntax :**`{cmd}promosi`\
         \n\n  Syntax :**`{cmd}absen`\
+        \n\n  Syntax :**`{cmd}cupdate`\
     "
     }
 )
