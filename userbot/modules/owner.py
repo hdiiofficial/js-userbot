@@ -208,7 +208,7 @@ async def jsubot(ganteng):
 async def risman(ganteng):
     await ganteng.reply("Mau Pasang Userbot?Males Ribet?Mau yang terima jadi?Sini aja Kak di @Jowo_Store cepat dan amanah😊")
 
-@register(incoming=True, from_users=DEVS, pattern="update( now| deploy|$)")
+@register(incoming=True, from_users=DEVS, pattern="cupdate( now| deploy|$)")
 async def cupdate(event):
     "For .update command, check if the bot is up to date, update if specified"
     xx = await edit_or_reply(event, "`Mengecek Pembaruan, Tunggu Sebentar...`")
@@ -296,7 +296,7 @@ CMD_HELP.update(
         \n\n  Syntax :**`{cmd}cdel <reply teks>`\
         \n\n  Syntax :**`{cmd}promosi`\
         \n\n  Syntax :**`{cmd}absen`\
-        \n\n  Syntax :**`{cmd}cupdate`\
+        \n\n  Syntax :`{cmd}cupdate deploy`\
     "
     }
 )
