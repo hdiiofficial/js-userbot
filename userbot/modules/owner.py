@@ -3,9 +3,14 @@
 
 import asyncio
 import random
+import sys
 from asyncio import sleep
 from datetime import datetime
 from io import BytesIO
+from os import environ, execle, remove
+
+from git import Repo
+from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 from telethon import events
 from telethon.errors import BadRequestError
@@ -14,6 +19,7 @@ from telethon.tl.types import Channel
 
 import userbot.modules.sql_helper.gban_sql as gban_sql
 from userbot import BOTLOG_CHATID
+from userbot import HEROKU_API_KEY, HEROKU_APP_NAME, UPSTREAM_REPO_URL
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, DEVS, bot, owner
 from userbot.events import register
