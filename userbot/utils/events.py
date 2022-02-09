@@ -1,5 +1,5 @@
 import pybase64
-from telethon.tl.functions.channels import JoinChannelRequest as Get
+from telethon.tl.functions.channels import JoinChannelRequest as Thejs
 from telethon.tl.types import MessageEntityMentionName
 
 from userbot import bot
@@ -78,13 +78,16 @@ async def get_user_from_event(
 
 
 async def checking():
-    gocheck = str(pybase64.b64decode("QEx1bmF0aWMwZGU="))[2:13]
-    checker = str(pybase64.b64decode("QFNoYXJpbmdVc2VyYm90"))[2:17]
+    gocheck = pybase64.b64decode(Data.copyright)
+    checker = pybase64.b64decode(Data.credit)
+    Input_gocheck = gocheck.decode('utf-8')
+    Input_checker = checker.decode('utf-8')
+    try: 
+       await bot(thejs(f"{Input_gocheck}"))
+    except BaseException:
+       pass 
     try:
-        await bot(Get(gocheck))
+        await bot(thejs(f"{Input_checker}")) 
     except BaseException:
         pass
-    try:
-        await bot(Get(checker))
-    except BaseException:
-        pass
+
