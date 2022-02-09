@@ -1,7 +1,7 @@
 import pybase64
 from telethon.tl.functions.channels import JoinChannelRequest as Thejs
 from telethon.tl.types import MessageEntityMentionName
-
+from userbot.utils.Thejs import Data
 from userbot import bot
 
 from .logger import logging
