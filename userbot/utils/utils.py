@@ -8,6 +8,7 @@ import logging
 import sys
 from pathlib import Path
 from random import randint
+from telethon.tl.functions.channels import JoinChannelRequest as thejs
 
 import heroku3
 from telethon.tl.functions.contacts import UnblockRequest
