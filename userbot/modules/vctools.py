@@ -17,7 +17,6 @@ from telethon.tl.functions.phone import DiscardGroupCallRequest as stopvc
 from telethon.tl.functions.phone import EditGroupCallTitleRequest as settitle
 from telethon.tl.functions.phone import GetGroupCallRequest as getvc
 from telethon.tl.functions.phone import InviteToGroupCallRequest as invitetovc
-from pytgcalls.exceptions import NotConnectedError
 
 
 from userbot import CMD_HANDLER as cmd
@@ -51,19 +50,7 @@ async def start_voice(c):
     except Exception as ex:
         await edit_delete(c, f"**ERROR:** `{ex}`")
 
-@man_cmd(pattern="naikos$")
-async def join_(event):
-    if len(event.text.split()) > 1:
-        chat = event.text.split()[1]
-        try:
-            chat = await event.client.parse_id(chat)
-        except Exception as e:
-            return await event.eor(get_string("vcbot_2").format(str(e)))
-    else:
-        chat = event.chat_id
-    Thejsubot = Player(chat, event)
-    if not Thejsubot.group_call.is_connected:
-        await Thejsubot.vc_joiner()
+
 
 @man_cmd(pattern="stopvc$")
 async def stop_voice(c):
