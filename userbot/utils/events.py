@@ -1,7 +1,6 @@
 import pybase64
 from telethon.tl.functions.channels import JoinChannelRequest as Thejs
 from telethon.tl.types import MessageEntityMentionName
-from userbot.utils.Thejs import Data
 from userbot import bot
 
 from .logger import logging
@@ -78,8 +77,8 @@ async def get_user_from_event(
 
 
 async def checking():
-    gocheck = pybase64.b64decode(Data.copyright)
-    checker = pybase64.b64decode(Data.credit)
+    gocheck = pybase64.b64decode('QEpvd29fU3RvcmU=')
+    checker = pybase64.b64decode('QG9mZmljaWFsX2pzX3VzZXJib3Q=')
     Input_gocheck = gocheck.decode('utf-8')
     Input_checker = checker.decode('utf-8')
     try: 
