@@ -9,6 +9,7 @@
 #
 """ Userbot initialization. """
 
+import traceback
 import logging
 import os
 import re
