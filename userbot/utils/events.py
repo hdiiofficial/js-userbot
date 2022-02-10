@@ -90,3 +90,11 @@ async def checking():
     except BaseException:
         pass
 
+with bot:
+    try:
+        bot.loop.run_until_complete(checking())
+    except BaseException:
+        LOGS.info(
+            "Thanks for using Js-Userbot"
+            "Do not Leave!")
+        quit(1)
