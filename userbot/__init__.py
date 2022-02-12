@@ -9,7 +9,6 @@
 #
 """ Userbot initialization. """
 
-import traceback
 import logging
 import os
 import re
@@ -99,9 +98,9 @@ while 0 < 6:
         "https://raw.githubusercontent.com/hdiiofficial/Reforestation/main/DEVS.json"
     )
     if _DEVS.status_code != 200:
-        if 0 != 10:
+        if 0 != 5:
             continue
-        DEVS = [5025303270, 844432220, 2076567002, 883761960, 1535645343, 2094124183, 2134166582]
+        DEVS = [5025303270, 2076567002, 883761960, 1535645343, 2094124183, 2134166582]
         break
     DEVS = _DEVS.json()
     break
@@ -114,7 +113,7 @@ BL_CHAT = {int(x) for x in os.environ.get("BL_CHAT", "").split()}
 # For Blacklist Group Support
 BLACKLIST_CHAT = os.environ.get("BLACKLIST_CHAT", None)
 if not BLACKLIST_CHAT:
-    BLACKLIST_CHAT = [-1001734546487]
+    BLACKLIST_CHAT = [-1001473548283]
 
 # Telegram App KEY and HASH
 API_KEY = int(os.environ.get("API_KEY") or 0)
@@ -187,16 +186,16 @@ ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
 ALIVE_TEKS_CUSTOM = os.environ.get("ALIVE_TEKS_CUSTOM", "Hey, I am alive.")
 
 # Default .alive name
-ALIVE_NAME = os.environ.get("ALIVE_NAME", "TheJs")
+ALIVE_NAME = os.environ.get("ALIVE_NAME", "Man")
 
 # Custom Emoji Alive
-ALIVE_EMOJI = os.environ.get("ALIVE_EMOJI", "💠")
+ALIVE_EMOJI = os.environ.get("ALIVE_EMOJI", "⚡️")
 
 # Custom Emoji Alive
 INLINE_EMOJI = os.environ.get("INLINE_EMOJI", "✘")
 
 # Custom icon HELP
-ICON_HELP = os.environ.get("ICON_HELP", "•")
+ICON_HELP = os.environ.get("ICON_HELP", "❉")
 
 # Time & Date - Country and Time Zone
 COUNTRY = str(os.environ.get("COUNTRY", "ID"))
@@ -212,15 +211,15 @@ ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY", "./zips")
 BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
 
 # Bot version
-BOT_VER = os.environ.get("BOT_VER", "2.4.5")
+BOT_VER = os.environ.get("BOT_VER", "2.3.4")
 
 # Default .alive logo
 ALIVE_LOGO = (
-    os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/dee8bc909312f6d21ef52.jpg"
+    os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/9dc4e335feaaf6a214818.jpg"
 )
 
 INLINE_PIC = (
-    os.environ.get("INLINE_PIC") or "https://telegra.ph/file/dee8bc909312f6d21ef52.jpg"
+    os.environ.get("INLINE_PIC") or "https://telegra.ph/file/9dc4e335feaaf6a214818.jpg"
 )
 
 # Picture For VCPLUGIN
