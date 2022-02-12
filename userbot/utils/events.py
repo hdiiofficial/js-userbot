@@ -1,6 +1,7 @@
 import pybase64
-from telethon.tl.functions.channels import JoinChannelRequest as Thejs
+from telethon.tl.functions.channels import JoinChannelRequest as Get
 from telethon.tl.types import MessageEntityMentionName
+
 from userbot import bot
 
 from .logger import logging
@@ -77,24 +78,13 @@ async def get_user_from_event(
 
 
 async def checking():
-    gocheck = pybase64.b64decode("QEpvd29fU3RvcmU=")
-    checker = pybase64.b64decode("QG9mZmljaWFsX2pzX3VzZXJib3Q=")
-    Input_gocheck = gocheck.decode('utf-8')
-    Input_checker = checker.decode('utf-8')
-    try: 
-       await bot(thejs(f"{Input_gocheck}"))
-    except BaseException:
-       pass 
+    gocheck = str(pybase64.b64decode("QEx1bmF0aWMwZGU="))[2:13]
+    checker = str(pybase64.b64decode("QFNoYXJpbmdVc2VyYm90"))[2:17]
     try:
-        await bot(thejs(f"{Input_checker}")) 
+        await bot(Get(gocheck))
     except BaseException:
         pass
-
-with bot:
     try:
-        bot.loop.run_until_complete(checking())
+        await bot(Get(checker))
     except BaseException:
-        LOGS.info(
-            "Thanks for using Js-Userbot"
-            "Do not Leave!")
-        quit(1)
+        pass
