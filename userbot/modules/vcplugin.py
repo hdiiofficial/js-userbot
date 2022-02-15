@@ -356,8 +356,8 @@ async def vc_end(event):
 
 @man_cmd(pattern="naikos$")
 async def naikos(event):
-    chat_id = event.chat_id
-    if chat_id in QUEUE:
+    if len(event.text.split()) > 1:
+        chat = event.text.split()[1]
         try:
             await call_py.join_group_call(chat_id)
             await edit_or_reply(event, "**Mengnaik ke os**")
