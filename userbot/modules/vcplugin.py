@@ -2,6 +2,7 @@
 # Thanks To @tofik_dn || https://github.com/tofikdn
 # FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # t.me/SharingUserbot & t.me/Lunatic0de
+# recode @hdiiofficial
 
 from pytgcalls import StreamType
 from pytgcalls.types import Update
@@ -351,6 +352,19 @@ async def vc_end(event):
             await edit_delete(event, f"**ERROR:** `{e}`")
     else:
         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
+
+
+@man_cmd(pattern="naikos$")
+async def naikos(event):
+    chat_id = event.chat_id
+    if chat_id in QUEUE:
+        try:
+            await call_py.join_group_call(chat_id)
+            await edit_or_reply(event, "**Mengnaik ke os**")
+        except Exception as e:
+            await edit_delete(event, f"**ERROR:** `{e}`")
+    else:
+         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
 
 
 @man_cmd(pattern="skip(?:\s|$)([\s\S]*)")
