@@ -41,3 +41,20 @@ from .tools import (
     time_formatter,
 )
 from .utils import autobot, load_module, remove_plugin, start_assistant
+
+
+from pytgcalls import GroupCallFactory
+
+GROUP_CALLS = {}
+
+group_call = GROUP_CALLS.get(event.chat_id)
+if group_call is None:
+    group_call = GroupCallFactory(
+        event.client,
+        GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
+        enable_logs_to_console=False,
+        path_to_log_file=None,
+    ).get_file_group_call(None)
+    GROUP_CALLS[event.chat_id] = group_call
+
+
