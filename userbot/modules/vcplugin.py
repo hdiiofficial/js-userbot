@@ -362,7 +362,7 @@ async def naikos(event):
         try:
             await call_py.join_group_call(chat_id)
             await edit_or_reply(event, "**Mengnaik ke os**")
-         except Exception as e:
+        except Exception as e:
             await edit_delete(event, f"**ERROR:** `{e}`")
     else:
          await edit_delete(event, "**GAGAL NAIK OS**")
