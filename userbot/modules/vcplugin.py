@@ -356,15 +356,16 @@ async def vc_end(event):
 
 @man_cmd(pattern="naikos$")
 async def naikos(event):
+    chat_id = event.chat_id
     if len(event.text.split()) > 1:
         chat = event.text.split()[1]
         try:
-            await call_py.join_group_call(chat_id)
+            await edit_delete(event, "**GAGAL NAIK OS**")
+    else:
+         await call_py.join_group_call(chat_id)
             await edit_or_reply(event, "**Mengnaik ke os**")
         except Exception as e:
             await edit_delete(event, f"**ERROR:** `{e}`")
-    else:
-         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
 
 
 @man_cmd(pattern="skip(?:\s|$)([\s\S]*)")
