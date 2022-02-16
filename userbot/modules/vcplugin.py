@@ -359,7 +359,6 @@ async def joinvcs(event):
     if chat_id not in QUEUE:
         try:
             await call_py.join_group_call(chat_id)
-            clear_queue(chat_id)
             await edit_or_reply(event, "**Berhasil Naik Ke Os**")
         except Exception as e:
             await edit_delete(event, f"**ERROR:** `{e}`")
