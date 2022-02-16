@@ -360,12 +360,12 @@ async def naikos(event):
     if len(event.text.split()) > 1:
         chat = event.text.split()[1]
         try:
-            await edit_delete(event, "**GAGAL NAIK OS**")
-    else:
-         await call_py.join_group_call(chat_id)
+            await call_py.join_group_call(chat_id)
             await edit_or_reply(event, "**Mengnaik ke os**")
          except Exception as e:
             await edit_delete(event, f"**ERROR:** `{e}`")
+    else:
+         await edit_delete(event, "**GAGAL NAIK OS**")
 
 
 @man_cmd(pattern="skip(?:\s|$)([\s\S]*)")
