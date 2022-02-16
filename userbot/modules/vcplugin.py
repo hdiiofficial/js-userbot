@@ -5,7 +5,7 @@
 # recode @hdiiofficial
 
 import traceback
-from pytgcalls import StreamType
+from pytgcalls import StreamType, group_call_factory
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import (
@@ -111,16 +111,16 @@ async def skip_current_song(chat_id: int):
 
 GROUP_CALLS = {}
 
-async def _joinvc(event):
-    group_call = GROUP_CALLS.get(event.chat_id)
-    if group_call is None:
-        group_call = GroupCallFactory(
-            event.client,
-            GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
-            enable_logs_to_console=False,
-            path_to_log_file=None,
-        ).get_file_group_call(None)
-        GROUP_CALLS[event.chat_id] = group_call
+
+group_call = GROUP_CALLS.get(event.chat_id)
+if group_call is None:
+    group_call = GroupCallFactory(
+        event.client,
+        GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
+        enable_logs_to_console=False,
+        path_to_log_file=None,
+    ).get_file_group_call(None)
+    GROUP_CALLS[event.chat_id] = group_call
 
 
 
