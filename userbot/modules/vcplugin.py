@@ -5,7 +5,6 @@
 # recode @hdiiofficial
 
 import traceback
-from pytgcalls import GroupCallFactory
 from pytgcalls import StreamType
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
