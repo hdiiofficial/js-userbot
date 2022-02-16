@@ -17,6 +17,7 @@ from telethon.tl import types
 from telethon.utils import get_display_name
 from youtubesearchpython import VideosSearch
 
+from pytgcalls import GroupCallFactory
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
 from userbot import PLAY_PIC as fotoplay
@@ -356,15 +357,13 @@ async def vc_end(event):
 
 @man_cmd(pattern="joinvcs$")
 async def joinvcs(event):
-    chat_id = event.chat_id
-    if chat_id not in QUEUE:
+    group_call = GROUP_CALLS.get(event.chat_id)
+    if not (group_call and group_call.is_connected):
         try:
-            await call_py.join_group_call(chat_id)
-            await edit_or_reply(event, "**Berhasil Naik Ke Os**")
-        except Exception as e:
-            await edit_delete(event, f"**ERROR:** `{e}`")
-    else:
-        await edit_delete(event, "**Gagal Bergabung**")
+            await group_call.start(event.chat_id,enable_action=false)
+            await edit_or_reply(event, "**Naik Mau nonton pi ci es**")
+        except BaseException:
+            pass
 
 @man_cmd(pattern="leftvcs$")
 async def leftvcs(event):
@@ -373,6 +372,7 @@ async def leftvcs(event):
         try:
             await group_call.leave_current_group_call()
             await group_call.stop()
+            await edit_or_reply(event, "**turun ketahuan ayang nonton vcs**")
         except BaseException:
             pass
 
