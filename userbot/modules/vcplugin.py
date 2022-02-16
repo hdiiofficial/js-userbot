@@ -4,6 +4,8 @@
 # t.me/SharingUserbot & t.me/Lunatic0de
 # recode @hdiiofficial
 
+import traceback
+from pytgcalls import GroupCallFactory
 from pytgcalls import StreamType
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
@@ -108,16 +110,17 @@ async def skip_current_song(chat_id: int):
     pop_an_item(chat_id)
     return [songname, link, type]
 
-    GROUP_CALLS = {}
-    group_call = GROUP_CALLS.get(event.chat_id)
-    if group_call is None:
-        group_call = GroupCallFactory(
-            event.client,
-            GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
-            enable_logs_to_console=False,
-            path_to_log_file=None,
-        ).get_file_group_call(None)
-        GROUP_CALLS[event.chat_id] = group_call
+GROUP_CALLS = {}
+
+group_call = GROUP_CALLS.get(event.chat_id)
+if group_call is None:
+    group_call = GroupCallFactory(
+        event.client,
+        GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
+        enable_logs_to_console=False,
+        path_to_log_file=None,
+    ).get_file_group_call(None)
+    GROUP_CALLS[event.chat_id] = group_call
 
 
 
