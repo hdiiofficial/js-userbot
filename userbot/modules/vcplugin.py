@@ -109,9 +109,9 @@ async def skip_current_song(chat_id: int):
     pop_an_item(chat_id)
     return [songname, link, type]
 
+
+
 GROUP_CALLS = {}
-
-
 group_call = GROUP_CALLS.get(event.chat_id)
 if group_call is None:
     group_call = GroupCallFactory(
