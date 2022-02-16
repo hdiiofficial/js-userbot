@@ -111,15 +111,16 @@ async def skip_current_song(chat_id: int):
 
 GROUP_CALLS = {}
 
-group_call = GROUP_CALLS.get(event.chat_id)
-if group_call is None:
-    group_call = GroupCallFactory(
-        event.client,
-        GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
-        enable_logs_to_console=False,
-        path_to_log_file=None,
-    ).get_file_group_call(None)
-    GROUP_CALLS[event.chat_id] = group_call
+async def _joinvc(event):
+    group_call = GROUP_CALLS.get(event.chat_id)
+    if group_call is None:
+        group_call = GroupCallFactory(
+            event.client,
+            GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
+            enable_logs_to_console=False,
+            path_to_log_file=None,
+        ).get_file_group_call(None)
+        GROUP_CALLS[event.chat_id] = group_call
 
 
 
