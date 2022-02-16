@@ -22,6 +22,7 @@ from userbot import CMD_HELP
 from userbot import PLAY_PIC as fotoplay
 from userbot import QUEUE_PIC as ngantri
 from userbot import call_py, owner
+from userbot.utils import GROUP_CALLS
 from userbot.utils import bash, edit_delete, edit_or_reply, man_cmd
 from userbot.utils.chattitle import CHAT_TITLE
 from userbot.utils.queues.queues import (
@@ -365,18 +366,15 @@ async def joinvcs(event):
     else:
         await edit_delete(event, "**Gagal Bergabung**")
 
-@man_cmd(pattern="naikos$")
-async def naikos(event):
-    chat_id = event.chat_id
-    if len(event.text.split()) > 1:
-        chat = event.text.split()[1]
+@man_cmd(pattern="leftvcs$")
+async def leftvcs(event):
+    group_call = GROUP_CALLS.get(event.chat_id)
+    if group_call and group_call.is_connected:
         try:
-            await call_py.join_group_call(chat_id)
-            await edit_or_reply(event, "**Mengnaik ke os**")
-        except Exception as e:
-            await edit_delete(event, f"**ERROR:** `{e}`")
-    else:
-         await edit_delete(event, "**GAGAL NAIK OS**")
+            await group_call.leave_current_group_call()
+            await group_call.stop()
+        except BaseException:
+            pass
 
 
 @man_cmd(pattern="skip(?:\s|$)([\s\S]*)")
