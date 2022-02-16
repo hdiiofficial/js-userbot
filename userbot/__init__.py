@@ -25,7 +25,7 @@ from git import Repo
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from pytgcalls import PyTgCalls
-from pytgcalls import GroupCallFactory
+from pytgcalls import GroupsCallFactory
 from requests import get
 from telethon import Button
 from telethon.errors import UserIsBlockedError
@@ -287,7 +287,7 @@ for binary, path in binaries.items():
 
 # Jangan di hapus Nanti ERROR
 
-from pytgcalls import GroupCallFactory
+
 GROUP_CALLS = {}
 group_call = GROUP_CALLS.get(event.chat_id)
 if group_call is None:
