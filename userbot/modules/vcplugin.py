@@ -353,6 +353,18 @@ async def vc_end(event):
     else:
         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
 
+@man_cmd(pattern="joinvcs$")
+async def joinvcs(event):
+    chat_id = event.chat_id
+    if chat_id not in QUEUE:
+        try:
+            await call_py.join_group_call(chat_id)
+            clear_queue(chat_id)
+            await edit_or_reply(event, "**Berhasil Naik Ke Os**")
+        except Exception as e:
+            await edit_delete(event, f"**ERROR:** `{e}`")
+    else:
+        await edit_delete(event, "**Gagal Bergabung**")
 
 @man_cmd(pattern="naikos$")
 async def naikos(event):
