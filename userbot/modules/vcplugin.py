@@ -375,8 +375,10 @@ async def joinvcs(event):
         try:
             await group_call.start(event.chat_id,enable_action=false)
             await edit_or_reply(event, "**Naik Mau nonton pi ci es**")
-        except BaseException:
-            pass
+        except Exceptation as e:
+            await edit_delete(event. f"**ERROR**: `{e}`")
+    else:
+        await edit_delete(event, "**Tidak bisa nonton pici es**")
 
 @man_cmd(pattern="leftvcs$")
 async def leftvcs(event):
