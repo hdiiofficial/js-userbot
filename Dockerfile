@@ -1,4 +1,4 @@
-FROM mrismanaziz/man-userbot:buster
+FROM hdiiofficial/js-userbot:tagname
 
 RUN git clone -b Js-Userbot https://github.com/hdiiofficial/Js-Userbot /home/manuserbot/ \
     && chmod 777 /home/manuserbot \
