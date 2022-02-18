@@ -1,4 +1,4 @@
-FROM hdiiofficial/js-userbot
+FROM mrismanaziz/man-userbot:slim-buster
 
 RUN git clone -b Js-Userbot https://github.com/hdiiofficial/Js-Userbot /home/manuserbot/ \
     && chmod 777 /home/manuserbot \
