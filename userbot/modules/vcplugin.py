@@ -5,7 +5,7 @@
 # recode @hdiiofficial
 
 import traceback
-from pytgcalls import StreamType
+from pytgcalls import StreamType, group_call_factory
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import (
@@ -109,18 +109,18 @@ async def skip_current_song(chat_id: int):
     pop_an_item(chat_id)
     return [songname, link, type]
 
-GROUP_CALLS = {}
 
-async def _joinvc(event):
-    group_call = GROUP_CALLS.get(event.chat_id)
-    if group_call is None:
-        group_call = GroupCallFactory(
-            event.client,
-            GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
-            enable_logs_to_console=False,
-            path_to_log_file=None,
-        ).get_file_group_call(None)
-        GROUP_CALLS[event.chat_id] = group_call
+
+GROUP_CALLS = {}
+group_call = GROUP_CALLS.get(event.chat_id)
+if group_call is None:
+    group_call = GroupCallFactory(
+        event.client,
+        GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
+        enable_logs_to_console=False,
+        path_to_log_file=None,
+    ).get_file_group_call(None)
+    GROUP_CALLS[event.chat_id] = group_call
 
 
 
@@ -375,8 +375,10 @@ async def joinvcs(event):
         try:
             await group_call.start(event.chat_id,enable_action=false)
             await edit_or_reply(event, "**Naik Mau nonton pi ci es**")
-        except BaseException:
-            pass
+        except Exceptation as e:
+            await edit_delete(event. f"**ERROR**: `{e}`")
+    else:
+        await edit_delete(event, "**Tidak bisa nonton pici es**")
 
 @man_cmd(pattern="leftvcs$")
 async def leftvcs(event):
