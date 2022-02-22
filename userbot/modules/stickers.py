@@ -45,6 +45,7 @@ KANGING_STR = [
     "Waw Stickernya Bagus Nih...Colong Dulu Yekan..",
     "ehh, keren nih... gua colong ya stickernya...",
     "Boleh juga ni Sticker Colong ahh~",
+    "Bagus juga stiker lu",
 ]
 
 OWNER = user.first_name
@@ -244,8 +245,8 @@ async def kang(args):
                 await args.client.send_read_acknowledge(conv.chat_id)
 
         await xx.edit(
-            "** Sticker Berhasil Ditambahkan!**"
-            f"\n        👻 **[KLIK DISINI](t.me/addstickers/{packname})** 👻\n**Untuk Menggunakan Stickers**",
+            "** Berhasil Nyolong Sticker!**"
+            f"\n         **[KLIK DISINI](t.me/addstickers/{packname})** \n**Untuk Menggunakan Stickers**",
             parse_mode="md",
         )
 
