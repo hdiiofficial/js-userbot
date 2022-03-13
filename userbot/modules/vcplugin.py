@@ -18,7 +18,7 @@ from telethon.tl import types
 from telethon.utils import get_display_name
 from youtubesearchpython import VideosSearch
 from telethon import TelegramClient, events
-from pytgcalls import GroupCallFactory
+from . import *
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
