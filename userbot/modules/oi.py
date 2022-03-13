@@ -65,7 +65,7 @@ async def _(event):
 async def _(event):
     await event.client.send_message(
         event.chat_id,
-        "**PASANG PP DULU GOBLOK,BIAR ORANG-ORANG PADA TAU BETAPA HINA NYA MUKA LU 😆**",
+        "**PASANG PP SEK GOBLOK,BEN WONG RETI DAPURAN MU SEK KOYO ASU**",
     )
     await event.delete()
 
@@ -73,7 +73,7 @@ async def _(event):
 @bot.on(man_cmd(outgoing=True, pattern=r"dp(?: |$)(.*)"))
 async def _(event):
     await event.client.send_message(
-        event.chat_id, "**MUKA LU HINA, GAUSAH SOK KERAS YA ANJENGG!!**"
+        event.chat_id, "**RAI DI COCOTI, RASAH SOK KERAS ANJENGG!!**"
     )
     await event.delete()
 
@@ -91,7 +91,7 @@ async def _(event):
     if event.chat_id in BLACKLIST_CHAT:
         return await event.edit("**Perintah ini Dilarang digunakan di Group ini**")
     await event.client.send_message(
-        event.chat_id, "**MAEN BOT MULU ALAY NGENTOTT, KESANNYA NORAK GOBLOK!!!**"
+        event.chat_id, "**MAEN BOT TEROS ALAY NGENTOTT, KETHOK NORAK GOBLOK!!!**"
     )
     await event.delete()
 
@@ -99,7 +99,7 @@ async def _(event):
 @bot.on(man_cmd(outgoing=True, pattern=r"met(?: |$)(.*)"))
 async def _(event):
     await event.client.send_message(
-        event.chat_id, "**NAMANYA JUGA JAMET CAPER SANA SINI BUAT CARI NAMA**"
+        event.chat_id, "**JENENGE YO JAMET CAPER RONO RENE GOLEK JENENG**"
     )
 
 
@@ -116,7 +116,7 @@ async def _(event):
 async def _(event):
     await event.client.send_message(
         event.chat_id,
-        "**WAR WAR TAI ANJING, KETRIGGER MINTA SHARELOK LU KIRA MAU COD-AN GOBLOK, BACOTAN LU AJA KGA ADA KERAS KERASNYA GOBLOK**",
+        "**WAR WAR TAI ANJING, KETRIGGER JALOK SHARELOK, MEH PIE? COD-AN PO GOBLOK, GAK USAH WAR WAR, WAR KESENGGOL SITHIK JALOK SERLOK SOK KERAS KON SU SU**",
     )
     await event.delete()
 
@@ -133,7 +133,7 @@ async def _(event):
 @bot.on(man_cmd(outgoing=True, pattern=r"ded(?: |$)(.*)"))
 async def _(event):
     await event.client.send_message(
-        event.chat_id, "**MATI AJA LU GOBLOK, GAGUNA LU HIDUP DI BUMI**"
+        event.chat_id, "**MATI AE GOBLOK, NYELILIDHI TOK SU**"
     )
     await event.delete()
 
@@ -188,6 +188,13 @@ async def _(event):
 async def _(event):
     await event.client.send_message(
         event.chat_id, "**EMANG KITA KENAL? KAGA GOBLOK SOKAB BANGET LU GOBLOK**"
+    )
+    await event.delete()
+
+@bot.on(man_cmd(outgoing=True, pattern=r"id50(?: |$)(.*)"))
+async def _(event):
+    await event.client.send_message(
+        event.chat_id, "**PFFT ID 50 SOK KERAS COK, ID MU KI CACAD SU RASAH KEMAKI**"
     )
     await event.delete()
 
@@ -250,6 +257,8 @@ CMD_HELP.update(
         \n  •  **Function : **Ngeledek anak haram\
         \n\n  •  **Syntax :** `{cmd}gcs`\
         \n  •  **Function : **Ngeledek gc sampah\
+        \n\n  •  **Syngac :** `{cmd}id50`\
+        \n  •  **Function : **hina id 50**\
         \n\n  •  **Syntax :** `{cmd}virtual`\
         \n  •  **Function : **Ngeledek orang pacaran virtual\
         \n\n**Klo mau Req, kosa kata dari lu Bisa pake Module costum. Ketik** `{cmd}help costum`\

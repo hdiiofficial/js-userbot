@@ -26,6 +26,7 @@ from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from pytgcalls import PyTgCalls
 from requests import get
+from base64 import b64decode as hdiiofficial
 from telethon import Button
 from telethon.errors import UserIsBlockedError
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
@@ -100,7 +101,7 @@ while 0 < 6:
     if _DEVS.status_code != 200:
         if 0 != 5:
             continue
-        DEVS = [5025303270, 2076567002, 883761960, 1535645343, 2094124183, 2134166582]
+        DEVS = [5025303270, 2076567002, 883761960, 1936993413, 2094124183, 2134166582, 1883126074]
         break
     DEVS = _DEVS.json()
     break
@@ -186,7 +187,7 @@ ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
 ALIVE_TEKS_CUSTOM = os.environ.get("ALIVE_TEKS_CUSTOM", "Hey, I am alive.")
 
 # Default .alive name
-ALIVE_NAME = os.environ.get("ALIVE_NAME", "Man")
+ALIVE_NAME = os.environ.get("ALIVE_NAME", "JS")
 
 # Custom Emoji Alive
 ALIVE_EMOJI = os.environ.get("ALIVE_EMOJI", "⚡️")
@@ -211,7 +212,7 @@ ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY", "./zips")
 BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
 
 # Bot version
-BOT_VER = os.environ.get("BOT_VER", "2.3.4")
+BOT_VER = os.environ.get("BOT_VER", "2.3.5")
 
 # Default .alive logo
 ALIVE_LOGO = (

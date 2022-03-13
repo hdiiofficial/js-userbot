@@ -49,19 +49,19 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
 ### Tutorial Deploy di VPS
 
--  `git clone https://github.com/hdiiofficial/Js-Userbot`
--  `cd Man-Userbot`
+-  `git clone https://github.com/hdiiofficial/js-userbot`
+-  `cd js-userbot`
 -  `pip3 install -r requirements.txt`
 -  `mv sample_config.env config.env`
--  edit config.env Anda dan isi VARS menggunakan `nano config.env` `CTRL + S ` untuk menyimpan VARS Anda, gunakan `CTRL + X` untuk keluar dan kembali ke direktori Man-Userbot
--  Buka SCRREN di VPS Anda `screen -S Js-Userbot`
--  Kemudian gunakan perintah ini untuk menyebarkan Man-Userbot `python3 -m userbot`
+-  edit config.env Anda dan isi VARS menggunakan `nano config.env` `CTRL + S ` untuk menyimpan VARS Anda, gunakan `CTRL + X` untuk keluar dan kembali ke direktori js-userbot
+-  Buka SCRREN di VPS Anda `screen -S js-userbot`
+-  Kemudian gunakan perintah ini untuk menyebarkan Js-Userbot `python3 -m userbot`
 
 </details>
 
 <h3 align="center">Klik Tombol di Bawah ini untuk Deploy di Heroku</h3>
 <p align="center"><a href="https://heroku.com/deploy?template=https://github.com/hdiiofficial/Js-Userbot"><img src="https://www.herokucdn.com/deploy/button.png" alt="Deploy to Heroku" target="_blank"/></a></p>
-
+<p align="center"><a href="https://telegram.dog/XTZ_HerokuBot?start=aGRpaW9mZmljaWFsL0pzLVVzZXJib3QgSnMtVXNlcmJvdA"><img src="https://img.shields.io/badge/HerokuBot-%230088cc.svg?&style=for-the-badge&logo=telegram&logoColor=white" /></p>
 
 ## Updates & Support
 

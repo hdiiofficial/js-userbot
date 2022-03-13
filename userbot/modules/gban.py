@@ -41,8 +41,8 @@ async def handler(tele):
                         return
 
 
-@bot.on(man_cmd(outgoing=True, pattern=r"gband(?: |$)(.*)"))
-@register(incoming=True, from_users=DEVS, pattern=r"^\.cgband(?: |$)(.*)")
+@bot.on(man_cmd(outgoing=True, pattern=r"gban(?: |$)(.*)"))
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cgban(?: |$)(.*)")
 async def gben(userbot):
     dc = userbot
     sender = await dc.get_sender()
@@ -110,8 +110,8 @@ async def gben(userbot):
     )
 
 
-@bot.on(man_cmd(outgoing=True, pattern=r"ungband(?: |$)(.*)"))
-@register(incoming=True, from_users=DEVS, pattern=r"^\.cungband(?: |$)(.*)")
+@bot.on(man_cmd(outgoing=True, pattern=r"ungban(?: |$)(.*)"))
+@register(incoming=True, from_users=DEVS, pattern=r"^\.cungban(?: |$)(.*)")
 async def gunben(userbot):
     dc = userbot
     sender = await dc.get_sender()
@@ -140,7 +140,7 @@ async def gunben(userbot):
     if user:
         if user.id in DEVS:
             return await dark.edit(
-                "**Man Tidak Bisa Terkena Perintah Ini, Karna Dia Pembuat saya**"
+                "**The Js Tidak Bisa Terkena Perintah Ini, Karna Dia Pembuat saya**"
             )
         try:
             from userbot.modules.sql_helper.gmute_sql import ungmute

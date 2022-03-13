@@ -14,19 +14,20 @@ from datetime import datetime
 from speedtest import Speedtest
 
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, StartTime, bot
+from userbot import CMD_HELP, StartTime, bot, DEVS
 from userbot.events import register
 from userbot.utils import edit_or_reply, humanbytes, man_cmd
 
 absen = [
-    "**Hadir bang** 😁",
-    "**Hadir kak** 😉",
-    "**Hadir dong** 😁",
-    "**Hadir ganteng** 🥵",
-    "**Hadir bro** 😎",
-    "**Hadir kak maap telat** 🥺",
+    "**Ehhh Owner, Hadir nih bang**",
+    "**Hadir kak**",
     "**Hadir dong**",
-    "**wushh the power of Js,hadir bang**"
+    "**Hadir ganteng**",
+    "**Hadir Bang**",
+    "**Hadir kak maap telat** 🥺",
+    "**Hadir The Js**",
+    "**wushh the power of Js,hadir bang**",
+    "**Ngueng....The Js nih bang**"
 ]
 
 
@@ -204,14 +205,6 @@ async def _(pong):
     await xx.edit("🏓 **Ping!**\n`%sms`" % (duration))
 
 
-# KALO NGEFORK absen ini GA USAH DI HAPUS YA GOBLOK 😡
-@register(incoming=True, from_users=1535645343, pattern=r"^.absen$")
-async def risman(ganteng):
-    await ganteng.reply(random.choice(absen))
-
-
-# JANGAN DI HAPUS GOBLOK 😡 LU COPY AJA TINGGAL TAMBAHIN
-# DI HAPUS GUA GBAN YA 🥴 GUA TANDAIN LU AKUN TELENYA 😡
 
 
 CMD_HELP.update(

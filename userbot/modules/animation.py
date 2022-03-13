@@ -150,6 +150,63 @@ async def _(typew):
     await typew.edit("`-TAMAT-`")
 
 
+@bot.on(man_cmd(outgoing=True, pattern=r"vvibu(?: |$)(.*)"))
+async def _(typew):
+    await typew.edit("`Lari Cokk.....`")
+    sleep(1)
+    await typew.edit("`Lari ada wibu!!`")
+    sleep(1)
+    await typew.edit("`🏃                    (wibu)`")
+    await typew.edit("`🏃                   (wibu)`")
+    await typew.edit("`🏃                  (wibu)`")
+    await typew.edit("`🏃                 (wibu)`")
+    await typew.edit("`🏃   `LARII Wibu`   (wibu)`")
+    await typew.edit("`🏃               (wibu)`")
+    await typew.edit("`🏃               (wibu)`")
+    await typew.edit("`🏃              (wibu)`")
+    await typew.edit("`🏃             (wibu)`")
+    await typew.edit("`🏃            (wibu)`")
+    await typew.edit("`🏃            (wibu)`")
+    await typew.edit("`🏃          (wibu)`")
+    await typew.edit("`🏃         (wibu)`")
+    await typew.edit("`🏃         (wibu)`")
+    await typew.edit("`🏃Anj wibu!  (Wibu)`")
+    await typew.edit("`🏃        (wibu)`")
+    await typew.edit("`🏃         (wibu)`")
+    await typew.edit("`🏃          (wibu)`")
+    await typew.edit("`🏃           (wibu)`")
+    await typew.edit("`🏃            (wibu)`")
+    await typew.edit("`🏃             (wibu)`")
+    await typew.edit("`🏃              (wibu)`")
+    await typew.edit("`🏃               (wibu)`")
+    await typew.edit("`🏃                (wibu)`")
+    await typew.edit("`🏃                 (wibu)`")
+    await typew.edit("`🏃                  (wibu)`")
+    await typew.edit("`🏃  Huh-Huh         (wibu)`")
+    await typew.edit("`🏃                 (wibu)`")
+    await typew.edit("`🏃               (wibu)`")
+    await typew.edit("`🏃              (wibu)`")
+    await typew.edit("`🏃             (wibu)`")
+    await typew.edit("`🏃            (wibu)`")
+    await typew.edit("`🏃           (wibu)`")
+    await typew.edit("`🏃          (wibu)`")
+    await typew.edit("`🏃         (wibu)`")
+    await typew.edit("`🏃        (wibu)`")
+    await typew.edit("`🏃       (wibu)`")
+    await typew.edit("`🏃      (wibu)`")
+    await typew.edit("`Wah Anj nih wibu!!!`")
+    sleep(1)
+    await typew.edit("`🏃       (wibu)`")
+    await typew.edit("`🏃   (wibu)`")
+    await typew.edit("`🏃  (wibu)`")
+    await typew.edit("`🏃  (wibu)`")
+    await typew.edit("`Dahlah cape mati aja`")
+    sleep(1)
+    await typew.edit("`☠️`☠️")
+    sleep(2)
+    await typew.edit("`-TAMAT-`")
+
+
 @bot.on(man_cmd(outgoing=True, pattern=r"gabut$"))
 async def _(e):
     await e.edit("`PERNAAHHHHH KAHHH KAUUU MENGIRA`")
@@ -1239,6 +1296,8 @@ CMD_HELP.update(
     \nUsage: nangis.\
     \n\n`{cmd}ceritacinta` ; `{cmd}canda`\
     \nUsage: liat sendiri\
+    \n\n`{cmd}vvibu`\
+    \nUsage: Lri dari wibu\
     \n\n`{cmd}santet`\
     \nUsage: Santet Online Buat Bercanda."
     }

@@ -2,7 +2,9 @@
 # Thanks To @tofik_dn || https://github.com/tofikdn
 # FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # t.me/SharingUserbot & t.me/Lunatic0de
+# recode @hdiiofficial
 
+import traceback
 from pytgcalls import StreamType
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
@@ -15,6 +17,7 @@ from pytgcalls.types.input_stream.quality import (
 from telethon.tl import types
 from telethon.utils import get_display_name
 from youtubesearchpython import VideosSearch
+from telethon import TelegramClient, events
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
@@ -106,6 +109,20 @@ async def skip_current_song(chat_id: int):
         )
     pop_an_item(chat_id)
     return [songname, link, type]
+
+GROUP_CALLS = {}
+
+async def _joinvc(event):
+    group_call = GROUP_CALLS.get(event.chat_id)
+    if group_call is None:
+        group_call = GroupCallFactory(
+            event.client,
+            GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON,
+            enable_logs_to_console=False,
+            path_to_log_file=None,
+        ).get_file_group_call(None)
+        GROUP_CALLS[event.chat_id] = group_call
+
 
 
 @man_cmd(pattern="play(?:\s|$)([\s\S]*)")
@@ -351,6 +368,27 @@ async def vc_end(event):
             await edit_delete(event, f"**ERROR:** `{e}`")
     else:
         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
+
+@man_cmd(pattern="joinvcs$")
+async def joinvcs(event):
+    group_call = GROUP_CALLS.get(event.chat_id)
+    if not (group_call and group_call.is_connected):
+        try:
+            await group_call.start(event.chat_id,enable_action=false)
+            await edit_or_reply(event, "**Naik Mau nonton pi ci es**")
+        except BaseException:
+            pass
+
+@man_cmd(pattern="leftvcs$")
+async def leftvcs(event):
+    group_call = GROUP_CALLS.get(event.chat_id)
+    if group_call and group_call.is_connected:
+        try:
+            await group_call.leave_current_group_call()
+            await group_call.stop()
+            await edit_or_reply(event, "**turun ketahuan ayang nonton vcs**")
+        except BaseException:
+            pass
 
 
 @man_cmd(pattern="skip(?:\s|$)([\s\S]*)")

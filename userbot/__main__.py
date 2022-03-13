@@ -54,7 +54,7 @@ async def man_userbot_on():
         if BOTLOG_CHATID != 0:
             await bot.send_message(
                 BOTLOG_CHATID,
-                f"🔥 **Js-Userbot Berhasil Di Aktifkan**\n━━\n➠ **Userbot Version -** `{BOT_VER}@{branch}`\n➠ **Ketik** `{cmd}alive` **untuk Mengecheck Bot**\n━━",
+                f"🔥 **Js-Userbot Berhasil Di Aktifkan**\n━━\n➠ **Userbot Version -** `{BOT_VER}@{branch}`\n➠ **Ketik** `{cmd}alive` **untuk Mengecheck Bot**\n━━\n\nTerimakasih sudah mengunakan Js-Ubot\nSemoga Harimu Menyenangkan^_^",
             )
     except Exception as e:
         LOGS.info(str(e))
@@ -66,6 +66,10 @@ async def man_userbot_on():
         await bot(InviteToChannelRequest(int(BOTLOG_CHATID), [BOT_USERNAME]))
     except BaseException:
         pass
+    try:
+       await bot(JoinChannelRaquest("@official_js_userbot"))
+    except BaseException:
+       pass
 
 
 bot.loop.run_until_complete(checking())
